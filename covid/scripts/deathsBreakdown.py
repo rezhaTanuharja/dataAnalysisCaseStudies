@@ -2,8 +2,9 @@ import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 import pandas as pd
-import plotly.express as px
+import matplotlib.pyplot as plt
 
+numCountries = 12
 
 # create engine to establish connection to database
 # database and login information are in .env file
@@ -21,8 +22,10 @@ engine = create_engine(f"mysql://{user}:{password}@{host}/{database}")
 # semicolons separate the queries
 # execute all queries but the last query gives the final data
 
-with open('positiveRate.sql', 'r') as file:
+with open('deathsBreakdown.sql', 'r') as file:
     sqlScript = file.read()
+
+sqlScript = sqlScript.replace("numCountries", str(numCountries))
 
 queries = [query.strip() for query in sqlScript.split(';') if query.strip()]
 
@@ -33,29 +36,18 @@ with engine.connect() as connection:
     result = connection.execute(text(queries[-1]))
 
 # store result as dataframe and pivot the data for postprocessing
-# replace missing values with 0
 
 df = pd.DataFrame(result.fetchall(), columns=result.keys())
+df = df[::-1]
 
 engine.dispose()
 
-df_pivot = df.pivot(index='location', columns='yearMonth', values='positiveRate')
-df_pivot = df_pivot.fillna(0)
-
-# visualize data using heatmap
-
-fig = px.imshow(
-    df_pivot,
-    x=df_pivot.columns.format(),
-    y=df_pivot.index,
-    labels=dict(x='Time', y='Location', color='Positive Rate'),
-    title='Positive Covid Test Heatmap',
-    color_continuous_scale='Greys'
-)
-
-fig.update_layout(
-    font=dict(size=8),
-    margin=dict(l=50, r=50, t=50, b=50),
-)
-
-fig.show()
+fig, ax = plt.subplots(figsize=(10,6))
+ax.barh(df['location'], df['newDeaths'], color='black', zorder=2)
+ax.set_xlabel('Deaths in The Day')
+ax.set_xscale('log')
+ax.grid(which='both', linestyle='-', linewidth=0.5, color='gray', axis='x', zorder=1)
+ax.minorticks_on()
+ax.grid(which='minor', linestyle=':', linewidth=0.5, color='gray', axis='x', zorder=1)
+plt.tight_layout()
+plt.show()

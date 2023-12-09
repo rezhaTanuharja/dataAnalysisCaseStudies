@@ -7,6 +7,7 @@
     Once you have set up the database, you can try any of the following data explorations or data visualizations:
     <ul>
       <li><a href="./instructions/positiveRate.md">Positive covid test rate in Europe</a></li>
+      <li><a href="./instructions/deathsBreakdown.md">Breakdown of The Highest Death Count in A Single Day</a></li>
     </ul>
   </p>
 </div>
