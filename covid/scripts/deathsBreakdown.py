@@ -50,4 +50,5 @@ ax.grid(which='both', linestyle='-', linewidth=0.5, color='gray', axis='x', zord
 ax.minorticks_on()
 ax.grid(which='minor', linestyle=':', linewidth=0.5, color='gray', axis='x', zorder=1)
 plt.tight_layout()
+plt.savefig('deathsBreakdown.png')
 plt.show()
