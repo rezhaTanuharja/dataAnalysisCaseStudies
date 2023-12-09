@@ -12,7 +12,7 @@
   * @brief
   * Common Table Expression (CTE) to retrieve list of countries in the defined continent.
   */
-WITH `cont` AS (
+WITH `europe` AS (
   SELECT `country`
     FROM `covid`.`countries`
     WHERE `continent` = 'Europe'
@@ -28,10 +28,7 @@ SELECT
 FROM `covid`.`casesDeaths` AS cd
   JOIN `covid`.`testing` AS ct
     ON ct.`entity` LIKE CONCAT(cd.`location`, '%') AND ct.`date` = cd.`date`
-WHERE cd.`location` IN (
-  SELECT `country` FROM `cont`
-  )
-  AND
-  cd.`date` BETWEEN '2019-01-01' AND '2023-12-31'
+WHERE cd.`location` IN (SELECT `country` FROM `europe`)
+  AND cd.`date` BETWEEN '2019-01-01' AND '2023-12-31'
 GROUP BY yearMonth, location
 HAVING `positiveRate` <= 1;
