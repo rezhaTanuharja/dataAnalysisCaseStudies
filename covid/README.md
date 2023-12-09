@@ -1,7 +1,18 @@
 <h1>COVID Case Study</h1>
 
+<div id="gettingStarted">
+  <h3>Getting Started</h3>
+  <p>
+    To replicate the work, follow the instructions to <a href="./instructions/setupDatabase.md">set up the MySQL database on your computer</a>.
+    Once you have set up the database, you can try any of the following data explorations or data visualizations:
+    <ul>
+      <li><a href="./instructions/positiveRate.md">Positive covid test rate in Europe</a></li>
+    </ul>
+  </p>
+</div>
+
 <div id="sources">
-  <h2>Data Sources</h2>
+  <h3>Data Sources</h3>
   <p>
     This case study uses data from <a href="https://github.com/owid/covid-19-data/tree/master"><strong>Our World in Data covid-19-data</strong></a> repository.
     Confirmed cases data are from WHO COVID-19 data. Vaccination and testing data are from, respectively:
