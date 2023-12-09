@@ -21,7 +21,7 @@
   <h3>Create Database</h3>
   <p>
     To create the database, login to your server and execute the following query:
-    <pre>CREATE DATABASE `covid`;</pre>
+    <pre lang="sql">CREATE DATABASE `covid`;</pre>
     Note that using backticks is not necessary here but is considered a good practice to avoid unexpected behavior in case the database name is equal to MySQL's reserved keywords.
   </p>
 </div>
@@ -37,7 +37,7 @@
       The following query create a new table `tableName` in the database `databaseName`.
       When creating a table, you need to specify the dataName and dataType.
       This tells the server what data is in the table and how much memory is required for each data entry.
-      <pre>
+      <pre lang="sql">
 CREATE TABLE `databaseName`.`tableName` (
   `dataName` dataType,
   `dataName` dataType,
@@ -45,7 +45,7 @@ CREATE TABLE `databaseName`.`tableName` (
   );</pre>
       If there is an existing table with the same name in the database, an attempt to create a new table with that name leads to error.
       Therefore, it's common to remove any existing table with the desired name before creating the new table:
-      <pre>
+      <pre lang="sql">
 DROP TABLE IF EXIST `databaseName`.`tableName`;
 CREATE TABLE `databaseName`.`tableName` (
   `dataName` dataType,
@@ -61,7 +61,7 @@ CREATE TABLE `databaseName`.`tableName` (
       First, we need to configure the server to allow interactions with local files with the following:
       <pre>SET GLOBAL local_infile=1;</pre>
       Subsequently, we can load our csv files' data into the table with the following query:
-      <pre>
+      <pre lang="sql">
 LOAD DATA LOCAL INFILE 'path to csv file'
   INTO TABLE `databaseName`.`tableName`
     FIELDS TERMINATED BY ','
