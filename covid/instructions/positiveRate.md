@@ -75,7 +75,7 @@ WHERE `continent` = 'Europe';</pre>
       Therefore, we cannot simply match the two entries and need to use the LIKE funtion in SQL.
       The following query pair the number of new cases with the total number of tests from the two tables:
     </p>
-    <pre>
+    <pre lang="sql">
 SELECT cd.`location`, cd.`newCases`, ct.`smoothedDailyChange`
 FROM `covid`.`casesDeaths` AS cd
   JOIN `covid`.`testing` AS ct
@@ -100,7 +100,7 @@ FROM `covid`.`casesDeaths` AS cd
     <p>
       The following query gives the monthly ratio:
     </p>
-    <pre>
+    <pre lang="sql">
 SELECT 
   DATE_FORMAT(cd.`date`, '%Y-%m') AS `yearMonth`, 
   cd.`location`, 
@@ -119,7 +119,7 @@ HAVING `positiveRate` <= 1;</pre>
     <p>
       This step combines the three steps above in a single query:
     </p>
-    <pre>
+    <pre lang="sql">
 WITH `europe` AS (
   SELECT `country`
     FROM `covid`.`countries`
@@ -153,11 +153,11 @@ HAVING `positiveRate` <= 1;</pre>
       First, store the query result in the dataframe 'df', see <a href="./pythonSQL.md">execute SQL query using Python</a> for detailed instruction to do this.
       Then, we pivot the dataframe using `location` as index, `yearMonth` as columns, and `positiveRate` as values.
       Since some values are missing, we replace these missing values with zeros using the function fillna().
-      <pre>
+      <pre lang="python">
 df_pivot = df.pivot(index='location', columns='yearMonth', values='positiveRate')
 df_pivot = df_pivot.fillna(0)</pre>
       Subsequently, we create the heatmap, adjusted the layout so that all country names are visible, and show it:
-      <pre>
+      <pre lang="python">
 fig = px.imshow(
   df_pivot,
   x=df_pivot.columns.format(),
