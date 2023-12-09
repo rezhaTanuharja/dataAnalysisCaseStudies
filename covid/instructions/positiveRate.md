@@ -70,5 +70,5 @@ HAVING `positiveRate` <= 1;</pre>
 
 <div id="results">
   <h3>Results</h3>
-  <iframe src="../assets/images/positiveRateEurope.html"></iframe>
+  <img src="../assets/images/positiveRateEurope.png">
 </div>
