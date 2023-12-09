@@ -54,7 +54,7 @@
       Therefore, the list of countries in Europe must be extracted from table `countries`.
       The following query gives the desired list:
     </p>
-    <pre>
+    <pre lang="sql">
 SELECT `country`
 FROM `covid`.`countries`
 WHERE `continent` = 'Europe';</pre>
