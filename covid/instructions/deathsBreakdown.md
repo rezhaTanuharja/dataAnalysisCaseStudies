@@ -101,6 +101,7 @@ WHERE `totalNewDeaths` = (SELECT MAX(`totalNewDeaths`) FROM `countryData`)
 ORDER BY `newDeaths` DESC
 LIMIT numCountries;</pre>
     <p>
+      The query is available in <a href="../scripts/deathsBreakdown.sql">deathsBreakdown.sql</a>.
       Note that you cannot execute the SQL query above because 'numCountries' is undefined.
       In the following section, we replace this variable with a value in Python.
     </p>
@@ -133,6 +134,9 @@ ax.minorticks_on()
 ax.grid(which='minor', linestyle=':', linewidth=0.5, color='gray', axis='x', zorder=1)
 plt.tight_layout()
 plt.show()</pre>
+    <p>
+      The Python script is available in <a href="../scripts/deathsBreakdown.py">deathsBreakdown.py</a>.
+    </p>
   </details>
 </div>
 
